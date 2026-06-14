@@ -3,6 +3,7 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Azure.Communication.Email;
 
 namespace PortfolioContactAPI;
 
@@ -30,7 +31,7 @@ public class ContactForm
             await new StreamReader(req.Body)
                 .ReadToEndAsync();
 
-        ContactRequest? contact =
+                ContactRequest? contact =
             JsonSerializer.Deserialize<ContactRequest>(
                 requestBody);
 
@@ -39,6 +40,44 @@ public class ContactForm
             return new BadRequestObjectResult(
                 "Invalid request.");
         }
+
+        string connectionString = 
+            Environment.GetEnvironmentVariable(
+                "ACS_CONNECTION_STRING");
+
+        var emailClient =
+            new EmailClient(connectionString);  
+
+        var emailMessage = 
+            new EmailMessage(
+                senderAddress:
+                    "DoNotReply@c7f314d0-8b9d-4081-bcb2-8713367c5973.azurecomm.net",
+                    content:
+                        new EmailContent(
+                            $"Portfolio Contact From {contact.Name}")
+                        {
+                            PlainText =
+$"""
+Name: {contact.Name} 
+
+Email: {contact.Email}
+
+Message
+{contact.Message}
+"""
+                        },
+                    recipients:  
+                    new EmailRecipients(
+                        [
+                            new EmailAddress(
+                                "brandonmorsework@gmail.com")
+                    
+                        
+            ])); 
+
+        await emailClient.SendAsync(
+            Azure.WaitUntil.Completed,
+            emailMessage);
 
         _logger.LogInformation(
             $"Name: {contact.Name}");
