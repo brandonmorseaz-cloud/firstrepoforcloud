@@ -16,7 +16,7 @@ async function sendMessage(event)
     try
     {
         const response = await fetch(
-            "http://localhost:7071/api/ContactForm",
+            "https://brandon-portfolio-contact-api.azurewebsites.net/api/ContactForm",
             {
                 method: "POST",
                 headers:
