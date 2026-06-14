@@ -16,7 +16,7 @@ async function sendMessage(event)
     try
     {
         const response = await fetch(
-            "PLACEHOLDER_AZUREFUNCTIONURL",
+            "http://localhost:7071/api/ContactForm",
             {
                 method: "POST",
                 headers:
@@ -26,15 +26,17 @@ async function sendMessage(event)
                 body: JSON.stringify(data)
             });
 
+            const result = await response.text();
+
             if(response.ok)
             {
                 document.getElementById("status").innerText = 
-                "Message sent!";
+                result;
             }
             else
             {
                 document.getElementById("status").innerText =
-                "Failed to send...";
+                `Failed: ${result}`;
             }
         }
             catch(error)
