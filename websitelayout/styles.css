@@ -36,3 +36,34 @@ ul {
 .links a:hover {
     text-decoration: underline;
 }
+
+.spinner-container
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.spinner
+{
+    width: 20px;
+    height:20px;
+    border: 3px solid #2353ee;
+    border-top: 3px solid #0078D4;
+    border-radius: 50%;
+    animation: spin 1s linear infite;
+
+}
+
+@keyframes spin
+{
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}
