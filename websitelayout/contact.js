@@ -13,8 +13,14 @@ async function sendMessage(event)
         message: document.getElementById("message").value
     };
 
+    const loading =
+                document.getElementById("loading")
+
+                loading.style.display = "flex";
+
     try
     {
+
         const response = await fetch(
             "https://bran-port-contact-api.azurewebsites.net/api/ContactForm",
             {
@@ -34,6 +40,9 @@ async function sendMessage(event)
                 result;
 
                 document.getElementById("contactForm").reset();
+
+                loading.style.display = "none";
+
             }
             else
             {
