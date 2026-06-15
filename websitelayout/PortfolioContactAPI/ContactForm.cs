@@ -33,7 +33,11 @@ public class ContactForm
 
                 ContactRequest? contact =
             JsonSerializer.Deserialize<ContactRequest>(
-                requestBody);
+                requestBody,
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
 
         if (contact == null)
         {
