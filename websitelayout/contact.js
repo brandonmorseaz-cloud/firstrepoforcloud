@@ -32,6 +32,8 @@ async function sendMessage(event)
             {
                 document.getElementById("status").innerText = 
                 result;
+
+                document.getElementById("contactForm").reset();
             }
             else
             {

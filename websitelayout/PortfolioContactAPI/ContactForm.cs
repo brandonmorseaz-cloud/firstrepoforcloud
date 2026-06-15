@@ -93,6 +93,6 @@ Message
             $"Message: {contact.Message}");
 
         return new OkObjectResult(
-            $"Message received from {contact.Name}");
+            $"Thank you for reaching out! Your Message sent successfully!");
     }
 }
