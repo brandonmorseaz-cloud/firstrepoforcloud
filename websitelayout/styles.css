@@ -50,8 +50,8 @@ ul {
 {
     width: 20px;
     height:20px;
-    border: 3px solid #2353ee;
-    border-top: 3px solid #0078D4;
+    border: 6px solid #2353ee;
+    border-top: 6px solid #0078D4;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 
