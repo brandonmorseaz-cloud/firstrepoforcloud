@@ -55,7 +55,7 @@ public class ContactForm
         var emailMessage = 
             new EmailMessage(
                 senderAddress:
-                    "DoNotReply@c7f314d0-8b9d-4081-bcb2-8713367c5973.azurecomm.net",
+                    "Portfolio@c7f314d0-8b9d-4081-bcb2-8713367c5973.azurecomm.net",
                     content:
                         new EmailContent(
                             $"Portfolio Contact From {contact.Name}")
